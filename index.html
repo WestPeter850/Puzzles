@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jigsaw Puzzle Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Jigsaw Puzzle</h1>
+    </header>
+
+    <div id="game-setup">
+        <h2>Game Setup</h2>
+        <div class="setup-section">
+            <h3>Select Your Challenge</h3>
+            <div class="options" id="challenge-options">
+                <!-- Options will be populated by JS -->
+            </div>
+        </div>
+        <div class="setup-section">
+            <h3>3. (Optional) Upload Your Own Image</h3>
+            <input type="file" id="image-upload" accept="image/*">
+        </div>
+        <button id="start-game-btn">Start Game</button>
+    </div>
+
+    <main style="display: none;">
+        <div id="game-board">
+            <div id="puzzle-area">
+                <div id="puzzle-container"></div>
+            </div>
+            <div id="side-panel">
+                <div id="reference-image-container">
+                    <h3>Reference Image</h3>
+                    <img id="reference-image" src="assets/puzzle-image.jpg" alt="Reference Image">
+                </div>
+                <div id="timer-container">
+                    <h3>Time Remaining</h3>
+                    <span id="timer" class="green">10:00</span>
+                </div>
+                 <div id="pieces-container">
+                    <h3>Your Pieces</h3>
+                    <div class="sort-buttons">
+                        <button id="sort-edges-btn">Sort Edges</button>
+                    </div>
+                    <div id="pieces-box"></div>
+                </div>
+                <div id="chat-container">
+                    <h3>Team Chat</h3>
+                    <div id="chat-messages"></div>
+                    <div id="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Send a message...">
+                        <button id="chat-send-btn">Chat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
