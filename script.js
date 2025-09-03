@@ -114,15 +114,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     piece.dataset.isEdge = 'true';
                 }
 
-                // Randomize starting position
-                piece.style.left = `${Math.random() * (piecesBox.clientWidth - pieceWidth)}px`;
-                piece.style.top = `${Math.random() * (piecesBox.clientHeight - pieceHeight)}px`;
-
-
+                // Position pieces in a grid to start
+                // This logic will be added after the loop
                 piecesBox.appendChild(piece);
                 pieces.push(piece);
             }
         }
+
+        // Lay out pieces in a grid
+        const containerWidth = piecesBox.clientWidth;
+        const padding = 5;
+        let x = padding;
+        let y = padding;
+        let maxY = 0;
+
+        pieces.forEach(piece => {
+            const pieceWidth = piece.width;
+            const pieceHeight = piece.height;
+
+            if (x + pieceWidth + padding > containerWidth) {
+                x = padding;
+                y += maxY + padding;
+                maxY = 0;
+            }
+            piece.style.left = `${x}px`;
+            piece.style.top = `${y}px`;
+
+            x += pieceWidth + padding;
+            if (pieceHeight > maxY) {
+                maxY = pieceHeight;
+            }
+        });
     }
 
     function setupDragAndDrop() {
@@ -291,49 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         img.src = PUZZLE_IMAGE_SRC;
     }
-
-    const sortEdgesBtn = document.getElementById('sort-edges-btn');
-    sortEdgesBtn.addEventListener('click', () => {
-        const allPieces = Array.from(piecesBox.children);
-        const edgePieces = allPieces.filter(p => p.dataset.isEdge === 'true');
-        const middlePieces = allPieces.filter(p => p.dataset.isEdge !== 'true');
-
-        // Simple grid layout for sorting
-        const containerWidth = piecesBox.clientWidth;
-        const padding = 5;
-        let x = padding;
-        let y = padding;
-        let maxY = 0;
-
-        const rearrange = (pieceList) => {
-            pieceList.forEach(piece => {
-                const pieceWidth = piece.width;
-                const pieceHeight = piece.height;
-
-                if (x + pieceWidth + padding > containerWidth) {
-                    x = padding;
-                    y += maxY + padding;
-                    maxY = 0;
-                }
-                piece.style.left = `${x}px`;
-                piece.style.top = `${y}px`;
-
-                x += pieceWidth + padding;
-                if (pieceHeight > maxY) {
-                    maxY = pieceHeight;
-                }
-            });
-        };
-
-        rearrange(edgePieces);
-
-        // Start middle pieces on a new line
-        x = padding;
-        y += maxY + padding;
-        maxY = 0;
-
-        rearrange(middlePieces);
-    });
 
     function displayChatMessage(message) {
         const messageElement = document.createElement('div');

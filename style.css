@@ -160,28 +160,6 @@ h3 {
 #timer.red { color: #dc3545; }
 
 /* Pieces Container */
-/* Pieces Container */
-.sort-buttons {
-    margin-bottom: 10px;
-    display: flex;
-    gap: 10px;
-}
-
-.sort-buttons button {
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    flex-grow: 1;
-}
-
-.sort-buttons button:hover {
-    background-color: #5a6268;
-}
-
 #pieces-box {
     position: relative;
     width: 100%;
